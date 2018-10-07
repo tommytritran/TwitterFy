@@ -29,7 +29,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
     }
     
-    
     @IBAction func onLogout(_ sender: Any) {
         APIManager.logOut()
     }

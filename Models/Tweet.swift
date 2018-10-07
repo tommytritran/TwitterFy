@@ -11,7 +11,7 @@ import Foundation
 class Tweet{
     
     // MARK: Properties
-    var id: Int64? // For favoriting, retweeting & replying
+    var id: Int? // For favoriting, retweeting & replying
     var text: String? // Text content of tweet
     var favoriteCount: Int? // Update favorite count label
     var favorited: Bool? // Configure favorite button
@@ -37,14 +37,13 @@ class Tweet{
             dictionary = originalTweet
         }
         
-        id = dictionary["id"] as! Int64
+        id = dictionary["id"] as! Int
         text = dictionary["text"] as? String
         favoriteCount = dictionary["favorite_count"] as? Int
         favorited = dictionary["favorited"] as? Bool
         retweetCount = dictionary["retweet_count"] as! Int
         retweeted = dictionary["retweeted"] as! Bool
         //replyCount = dictionary["reply_count"] as! Int
-        
         // initialize user
         let user = dictionary["user"] as! [String: Any]
         self.user = User(dictionary: user)

@@ -103,6 +103,9 @@
                                                         <constraint firstAttribute="width" constant="30" id="j7d-UM-kp5"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="U1g-kw-izy" eventType="touchUpInside" id="iqL-Bl-rRw"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tv-lH-DzW">
                                                     <rect key="frame" x="201" y="113.5" width="30" height="30"/>
@@ -110,6 +113,9 @@
                                                         <constraint firstAttribute="width" constant="30" id="CsR-5P-qeo"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="U1g-kw-izy" eventType="touchUpInside" id="BC4-vQ-iZt"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whT-ug-VJh">
                                                     <rect key="frame" x="239" y="118.5" width="50" height="21"/>
@@ -170,10 +176,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="favoritLabel" destination="whT-ug-VJh" id="wXc-hN-ppV"/>
-                                            <outlet property="favoriteButton" destination="whT-ug-VJh" id="mWa-EU-pgv"/>
+                                            <outlet property="favoritLabel" destination="whT-ug-VJh" id="uNb-DG-RgM"/>
+                                            <outlet property="favoriteButton" destination="2Tv-lH-DzW" id="aVT-QB-SUW"/>
                                             <outlet property="profilePictureIV" destination="jWE-a9-hSa" id="NUg-Dp-Z7U"/>
-                                            <outlet property="retweetButton" destination="2Tv-lH-DzW" id="pEQ-li-Ait"/>
+                                            <outlet property="retweetButton" destination="A4X-As-jD5" id="DNb-8C-JXp"/>
                                             <outlet property="retweetLabel" destination="auq-Db-maF" id="CRr-cc-o2j"/>
                                             <outlet property="screenNameLabel" destination="yfL-fb-zv9" id="M7t-95-Kda"/>
                                             <outlet property="timestampLabel" destination="6hI-aI-5ab" id="Eo8-xe-V3Y"/>
