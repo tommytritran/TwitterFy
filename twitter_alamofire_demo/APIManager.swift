@@ -23,7 +23,8 @@ class APIManager: SessionManager {
     static let accessTokenURL = "https://api.twitter.com/oauth/access_token"
     
     static let callbackURLString = "alamoTwitter://"
-    
+    //Access UserDefaults
+    let defaults = UserDefaults.standard
     // MARK: Twitter API methods
     func login(success: @escaping () -> (), failure: @escaping (Error?) -> ()) {
         print("Login function")
@@ -41,7 +42,7 @@ class APIManager: SessionManager {
                     print("Welcome \(String(describing: user.name))")
                     
                     // MARK: TODO: set User.current, so that it's persisted
-                    
+                    User.current = user
                     success()
                 }
             })
