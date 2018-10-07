@@ -8,11 +8,11 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var isLoadingMoreData = false
     var tweets: [Tweet] = []
     
     override func viewDidLoad() {
@@ -28,7 +28,21 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fetchData()
         // Do any additional setup after loading the view.
     }
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if(!isLoadingMoreData){
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isLoadingMoreData = true
+                
+                // ... Code to load more results ...
+                fetchData()
+            }
+        }
+    }
     @IBAction func onLogout(_ sender: Any) {
         APIManager.logOut()
     }
@@ -53,6 +67,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
+                self.isLoadingMoreData = false
+                
             } else if let error = error {
                 print("Error getting home timeline: " + error.localizedDescription)
             }
