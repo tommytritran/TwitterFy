@@ -40,7 +40,6 @@ class TweetCell: UITableViewCell {
             if tweet.retweeted! {
                 retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: UIControlState.normal)
             }
-
         }
     }
     override func awakeFromNib() {
@@ -63,7 +62,7 @@ class TweetCell: UITableViewCell {
                 if let  error = error {
                     print("Error favoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully favorited the following Tweet: \n\(String(describing: tweet.text))")
                 }
             }
         }else{
@@ -74,7 +73,7 @@ class TweetCell: UITableViewCell {
                 if let  error = error {
                     print("Error unfavoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully unfavorited the following Tweet: \n\(String(describing: tweet.text))")
                 }
                 
             }

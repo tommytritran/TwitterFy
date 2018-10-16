@@ -28,6 +28,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fetchData()
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // change 2 to desired number of seconds
+            print("update")
+            self.fetchData()
+            self.tableView.reloadData()
+        }
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if(!isLoadingMoreData){
             // Calculate the position of one screen length before the bottom of the results
@@ -83,5 +90,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             // Tell the refreshControl to stop spinning
             refreshControl.endRefreshing()
         }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let detailViewController = segue.destination as? DetailViewController {
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell){
+                let tweet = tweets[indexPath.row]
+                detailViewController.tweet = tweet
+            }
+        }
+    }
 
 }

@@ -7,24 +7,30 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteCountLabel: UILabel!
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var replyCountLabel: UILabel!
+    @IBOutlet weak var datestampLabel: UILabel!
+    @IBOutlet weak var screennameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        refreshData()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func refreshData(){
+        print(tweet)
     }
-    */
-
 }
