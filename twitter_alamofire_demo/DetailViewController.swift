@@ -30,7 +30,79 @@ class DetailViewController: UIViewController {
         
     }
     
+    @IBAction func onReply(_ sender: Any) {
+    }
+    @IBAction func onFavorite(_ sender: Any) {
+        if tweet.favorited == false {
+            tweet.favorited = true
+            tweet.favoriteCount = tweet.favoriteCount!+1
+            refreshData()
+            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(String(describing: tweet.text))")
+                }
+            }
+        }else{
+            tweet.favorited = false
+            tweet.favoriteCount = tweet.favoriteCount!-1
+            refreshData()
+            APIManager.shared.unfavorite(with: tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error unfavoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unfavorited the following Tweet: \n\(String(describing: tweet.text))")
+                }
+                
+            }
+        }
+    }
+    @IBAction func onRetweet(_ sender: Any) {
+        if tweet.retweeted == false{
+            tweet.retweetCount = tweet.retweetCount!+1
+            tweet.retweeted = true
+            refreshData()
+            APIManager.shared.retweet(with: tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error Retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully Retweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }else{
+            tweet.retweeted = false
+            tweet.retweetCount = tweet.retweetCount!-1
+            refreshData()
+            APIManager.shared.untweet(with: tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error Unretweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully Unretweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }
+    }
     func refreshData(){
-        print(tweet)
+        textLabel.text = tweet.text
+        usernameLabel.text = tweet.user?.name
+        datestampLabel.text = tweet.createdAtString
+        retweetCountLabel.text = String(tweet.retweetCount!)
+        favoriteCountLabel.text = String(tweet.favoriteCount!)
+        screennameLabel.text = tweet.user?.screenName
+        profileImage.af_setImage(withURL: tweet.user!.profilePictureURL!)
+        
+        if tweet.favorited! {
+            favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: UIControlState.normal)
+        }
+        if tweet.favorited! == false{
+            favoriteButton.setImage(UIImage(named: "favor-icon.png"), for: UIControlState.normal)
+        }
+        if tweet.retweeted! {
+            retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: UIControlState.normal)
+        }
+        if tweet.retweeted! == false {
+            retweetButton.setImage(UIImage(named: "retweet-icon.png"), for: UIControlState.normal)
+        }
     }
 }

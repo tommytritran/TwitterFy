@@ -13,6 +13,9 @@ class User{
     var name:String?
     var screenName:String?
     var profilePictureURL:URL?
+    var tweetCount:String?
+    var followers:String?
+    var following:String?
     private static var _current: User?
     var dictionary: [String: Any]?
     
@@ -20,6 +23,9 @@ class User{
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
+        tweetCount = String(dictionary["statuses_count"] as! Int)
+        followers = String(dictionary["followers_count"] as! Int)
+        following = String(dictionary["friends_count"] as! Int)
         profilePictureURL = URL(string: dictionary["profile_image_url_https"] as! String)
     }
     

@@ -97,7 +97,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let tweet = tweets[indexPath.row]
                 detailViewController.tweet = tweet
             }
+            
         }
+        
     }
 
 }

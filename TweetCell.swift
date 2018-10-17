@@ -21,7 +21,6 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var profilePictureIV: UIImageView!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var retweetButton: UIButton!
-    
     @IBOutlet weak var favoriteButton: UIButton!
     
     var tweet: Tweet!{

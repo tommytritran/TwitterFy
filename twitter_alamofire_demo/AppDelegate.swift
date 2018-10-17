@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if User.current != nil{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let TimeLineViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+                let TimeLineViewController = storyboard.instantiateViewController(withIdentifier: "tabbarVC")
                 self.window?.rootViewController = TimeLineViewController
             }
         
