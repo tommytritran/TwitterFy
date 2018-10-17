@@ -103,7 +103,6 @@ class TweetCell: UITableViewCell {
             }
         }
     }
-    
     func refreshData(){
         tweetLabel.text = tweet.text
         usernameLabel.text = tweet.user?.name

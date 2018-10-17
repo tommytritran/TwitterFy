@@ -63,7 +63,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
        
         return cell
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -99,7 +98,16 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             }
             
         }
+        if let profileViewController = segue.destination as? ProfileViewController {
+            let button = sender as! UIButton
+            let cell = button.superview?.superview as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell){
+                let tweet = tweets[indexPath.row]
+                profileViewController.user = tweet.user
+            }
+        }
         
     }
+    
 
 }

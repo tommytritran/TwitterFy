@@ -21,14 +21,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var user: User! = User.current!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         fetchData()
         refreshData()
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTweetCell", for: indexPath) as! TweetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTweetCell", for: indexPath) as! ProfileTweetCell
         cell.tweet = tweets[indexPath.row]
         return cell;
     }
